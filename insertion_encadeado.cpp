@@ -55,50 +55,40 @@ void freeList(struct no* head){
    }
 }
 
-struct no* bubble_sort(struct no* head) {
-  // Caso a lista tenha menos de 2 elementos, não há nada para trocar
-  if (head == NULL || head->next == NULL) {
+
+struct no* insertion_sort(struct no* head){
+ if(head == NULL || head->next == NULL){
    return head;
-  }
-  
-  int trocou;
-  do{
-    trocou = 0;
-    struct no* atual = head;
-    struct no* anterior = NULL;
+ }
 
-    //percorre a lista verificando pares de nós adjacentes
-    while(atual != NULL && atual->next != NULL){
-      struct no* proximo = atual->next;
-      //verifica se o nó atual é maior que o próximo
-      if(atual->dado > proximo->dado){
-        //se for maior, realiza a troca 
-        if(anterior == NULL){
-          //caso seja o primeiro nó, a cabeça da lista muda
-          head = proximo;
-        } else {
-          //caso contrário, o nó anterior deve apontar para o próximo
-          anterior->next = proximo;
+struct no* sorted = NULL; //lista ordenada, inicialmente vazia
+struct no* atual = head;
+
+//percorrer a lista original
+while (atual != NULL){
+    struct no* proximo = atual->next; //guardar  o proximo nó para a próxima iteração
+
+    //inserir nó atual na posição correta da lista ordenada
+    if (sorted == NULL || sorted->dado >= atual->dado){
+        //inserir no inicio ou na posição correta da lista ordenada
+        atual->next = sorted;
+        sorted = atual;
+    } else {
+        struct no* temp = sorted;
+        //encontrar o local de inserção (entre dois nós)
+        while (temp->next != NULL && temp->next->dado < atual->dado){
+            temp = temp->next;
         }
-
-        //o próximo nó passa a apontar para o nó atual
-        atual->next = proximo->next;
-        proximo->next = atual;
-
-        //marca que houve uma troca
-        trocou = 1;
-      }
-
-      //avança os ponteiros
-      anterior = atual;
-      atual = atual->next;
+        atual->next = temp->next;
+        temp->next = atual;
     }
-  } while (trocou);//repete enquanto houver trocas
-  
-  return head;//retorna a cabeça da lista
+    
+    //avançar para o próximo nó
+    atual = proximo;
+}
+return sorted;//retorna a nova cabeça da lista ordenada
 
 }
-
 
 
 //funçao principal
@@ -116,8 +106,8 @@ int main(){
     printf("Lista original:\n");
     printlist(head);
 
-    // Chamando o bubble sort
-    head = bubble_sort(head);
+    // Chamando o insertion_sort
+    head = insertion_sort(head);
 
     // Imprimindo a lista ordenada
     printf("Lista ordenada:\n");
@@ -129,4 +119,3 @@ int main(){
   
   return 0;
 }
-

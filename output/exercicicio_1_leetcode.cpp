@@ -1,3 +1,5 @@
+//Dada a natureza headde uma lista encadeada, retorne a lista após classificá-la em ordem crescente .
+
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -41,18 +43,6 @@ void printlist(struct no* head){
    no_atual = no_atual -> next;
   }
   printf("NULL\n");
-}
-
-//liberando memoria
-void freeList(struct no* head){
- struct no* current = head;
- struct no* next;
-  
-   while(current != NULL){
-   next = current -> next;
-   free(current);
-   current = next;
-   }
 }
 
 struct no* bubble_sort(struct no* head) {
@@ -101,32 +91,16 @@ struct no* bubble_sort(struct no* head) {
 
 
 
-//funçao principal
+
 int main(){
-  struct no* head = NULL;
-  
-  //add elememtos
-  head = criar_no(2);
-  insere_no(head,3);
-  insere_no(head,1);
-  insere_no(head,5);
-  insere_no(head,4);
+struct no* head = NULL;
+printf("lista original:\n ");
+head = criar_no(7);
+insere_no(head, 1);
 
-  // Imprimindo a lista original
-    printf("Lista original:\n");
-    printlist(head);
+printlist(head);
+printf("lista ordenada:\n ");
+head = bubble_sort(head);
 
-    // Chamando o bubble sort
-    head = bubble_sort(head);
-
-    // Imprimindo a lista ordenada
-    printf("Lista ordenada:\n");
-    printlist(head);
-
-  
-  //liberando memoria
-  freeList (head);
-  
-  return 0;
+printlist(head);
 }
-
