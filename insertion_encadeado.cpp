@@ -91,31 +91,31 @@ return sorted;//retorna a nova cabeça da lista ordenada
 }
 
 
-//funçao principal
+
 int main(){
-  struct no* head = NULL;
-  
-  //add elememtos
-  head = criar_no(2);
-  insere_no(head,3);
-  insere_no(head,1);
-  insere_no(head,5);
-  insere_no(head,4);
+struct no* head = NULL;
+int n, valor;
 
-  // Imprimindo a lista original
-    printf("Lista original:\n");
-    printlist(head);
+//solicita ao usuário o número de elementos
+printf("Quantos elementos deseja adicionar a lista? ");
+scanf("%d", &n);
 
-    // Chamando o insertion_sort
-    head = insertion_sort(head);
+//solicita os valores para a lista
+printf("Digite os %d valores para a lista:\n", n);
+for (int i = 0; i < n; i++){
+  printf("Valor %d: ", i + 1);
+  scanf("%d", &valor);
+  head = insere_no(head, valor);
+}
 
-    // Imprimindo a lista ordenada
-    printf("Lista ordenada:\n");
-    printlist(head);
+printf("lista original:\n ");
+printlist(head);
 
-  
-  //liberando memoria
-  freeList (head);
-  
-  return 0;
+head = insertion_sort(head);
+printf("lista ordenada:\n ");
+printlist(head);
+
+freeList(head);
+
+return 0;
 }

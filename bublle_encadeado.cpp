@@ -101,32 +101,31 @@ struct no* bubble_sort(struct no* head) {
 
 
 
-//funçao principal
+
 int main(){
-  struct no* head = NULL;
-  
-  //add elememtos
-  head = criar_no(2);
-  insere_no(head,3);
-  insere_no(head,1);
-  insere_no(head,5);
-  insere_no(head,4);
+struct no* head = NULL;
+int n, valor;
 
-  // Imprimindo a lista original
-    printf("Lista original:\n");
-    printlist(head);
+//solicita ao usuário o número de elementos
+printf("Quantos elementos deseja adicionar a lista? ");
+scanf("%d", &n);
 
-    // Chamando o bubble sort
-    head = bubble_sort(head);
-
-    // Imprimindo a lista ordenada
-    printf("Lista ordenada:\n");
-    printlist(head);
-
-  
-  //liberando memoria
-  freeList (head);
-  
-  return 0;
+//solicita os valores para a lista
+printf("Digite os %d valores para a lista:\n", n);
+for (int i = 0; i < n; i++){
+  printf("Valor %d: ", i + 1);
+  scanf("%d", &valor);
+  head = insere_no(head, valor);
 }
 
+printf("lista original:\n ");
+printlist(head);
+
+head = bubble_sort(head);
+printf("lista ordenada:\n ");
+printlist(head);
+
+freeList(head);
+
+return 0;
+}

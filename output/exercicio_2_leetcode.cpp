@@ -34,7 +34,7 @@ void merge(int nums1[], int m, int nums2[], int n) {
 // Função para ler dados de nums2 e ignorar os zeros
 void read_nums2(int nums2[], int n, int* new_n) {
     *new_n = 0;  // Inicializa o contador de elementos válidos
-    printf("Digite os %d elementos de nums2 (zeros serão ignorados):\n", n);
+    printf("Digite os %d elementos de nums2:\n", n);
     for (int i = 0; i < n; i++) {
         int num;
         scanf("%d", &num);
