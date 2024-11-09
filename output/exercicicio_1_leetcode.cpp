@@ -1,4 +1,5 @@
-//Dada a natureza headde uma lista encadeada, retorne a lista após classificá-la em ordem crescente .
+//Dada a natureza headde uma lista encadeada, retorne a lista após classificá-la em ordem crescente 
+//exercicio 148 do leetcode
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -97,6 +98,8 @@ struct no* head = NULL;
 printf("lista original:\n ");
 head = criar_no(7);
 insere_no(head, 1);
+insere_no(head, 0);
+insere_no(head, 2);
 
 printlist(head);
 printf("lista ordenada:\n ");
